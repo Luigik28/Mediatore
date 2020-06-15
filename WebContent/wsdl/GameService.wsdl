@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.iMerc.it" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.iMerc.it" xmlns:intf="http://service.iMerc.it" xmlns:tns1="http://exceptions.iMerc.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.iMerc.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exceptions.iMerc.it"/>
+   <element name="getMazzoGiocatore">
+    <complexType>
+     <sequence>
+      <element name="idGame" type="xsd:int"/>
+      <element name="player" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMazzoGiocatoreResponse">
+    <complexType>
+     <sequence>
+      <element name="getMazzoGiocatoreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creaPartita">
+    <complexType>
+     <sequence>
+      <element name="nome" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creaPartitaResponse">
+    <complexType>
+     <sequence>
+      <element name="creaPartitaReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ciao">
+    <complexType>
+     <sequence>
+      <element name="n" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ciaoResponse">
+    <complexType>
+     <sequence>
+      <element name="ciaoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="esistePartita">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="esistePartitaResponse">
+    <complexType>
+     <sequence>
+      <element name="esistePartitaReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:NoGameFoundException"/>
+   <element name="addGiocatore">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="nome" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addGiocatoreResponse">
+    <complexType>
+     <sequence>
+      <element name="addGiocatoreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="daiCarte">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="daiCarteResponse">
+    <complexType>
+     <sequence>
+      <element name="daiCarteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMonte">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="monte" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMonteResponse">
+    <complexType>
+     <sequence>
+      <element name="setMonteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exceptions.iMerc.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="MediatoreException">
+    <sequence/>
+   </complexType>
+   <complexType name="NoGameFoundException">
+    <complexContent>
+     <extension base="tns1:MediatoreException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="esistePartitaResponse">
+
+      <wsdl:part element="impl:esistePartitaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addGiocatoreRequest">
+
+      <wsdl:part element="impl:addGiocatore" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="daiCarteResponse">
+
+      <wsdl:part element="impl:daiCarteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMazzoGiocatoreRequest">
+
+      <wsdl:part element="impl:getMazzoGiocatore" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creaPartitaRequest">
+
+      <wsdl:part element="impl:creaPartita" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setMonteResponse">
+
+      <wsdl:part element="impl:setMonteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addGiocatoreResponse">
+
+      <wsdl:part element="impl:addGiocatoreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creaPartitaResponse">
+
+      <wsdl:part element="impl:creaPartitaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ciaoRequest">
+
+      <wsdl:part element="impl:ciao" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="esistePartitaRequest">
+
+      <wsdl:part element="impl:esistePartita" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="NoGameFoundException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="daiCarteRequest">
+
+      <wsdl:part element="impl:daiCarte" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setMonteRequest">
+
+      <wsdl:part element="impl:setMonte" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ciaoResponse">
+
+      <wsdl:part element="impl:ciaoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMazzoGiocatoreResponse">
+
+      <wsdl:part element="impl:getMazzoGiocatoreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GameService">
+
+      <wsdl:operation name="getMazzoGiocatore">
+
+         <wsdl:input message="impl:getMazzoGiocatoreRequest" name="getMazzoGiocatoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMazzoGiocatoreResponse" name="getMazzoGiocatoreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creaPartita">
+
+         <wsdl:input message="impl:creaPartitaRequest" name="creaPartitaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:creaPartitaResponse" name="creaPartitaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ciao">
+
+         <wsdl:input message="impl:ciaoRequest" name="ciaoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ciaoResponse" name="ciaoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="esistePartita">
+
+         <wsdl:input message="impl:esistePartitaRequest" name="esistePartitaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:esistePartitaResponse" name="esistePartitaResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addGiocatore">
+
+         <wsdl:input message="impl:addGiocatoreRequest" name="addGiocatoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addGiocatoreResponse" name="addGiocatoreResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="daiCarte">
+
+         <wsdl:input message="impl:daiCarteRequest" name="daiCarteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:daiCarteResponse" name="daiCarteResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMonte">
+
+         <wsdl:input message="impl:setMonteRequest" name="setMonteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMonteResponse" name="setMonteResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GameServiceSoapBinding" type="impl:GameService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getMazzoGiocatore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMazzoGiocatoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMazzoGiocatoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creaPartita">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="creaPartitaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="creaPartitaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ciao">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ciaoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ciaoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="esistePartita">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="esistePartitaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="esistePartitaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addGiocatore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addGiocatoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addGiocatoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="daiCarte">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="daiCarteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="daiCarteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMonte">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setMonteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setMonteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GameServiceService">
+
+      <wsdl:port binding="impl:GameServiceSoapBinding" name="GameService">
+
+         <wsdlsoap:address location="http://localhost:8080/Mediatore/services/GameService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

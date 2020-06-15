@@ -1,0 +1,63 @@
+package it.iMerc.service;
+
+import it.iMerc.exceptions.MediatoreException;
+import it.iMerc.exceptions.NoGameFoundException;
+import it.iMerc.exceptions.NumberOfPlayerException;
+import it.iMerc.gamePool.GamePool;
+import it.iMerc.partita.Game;
+import it.iMerc.partita.Giocatore;
+import it.iMerc.partita.Mazzo;
+
+public class GameService {
+	
+	public String ciao(String n) {
+		return n;
+	}
+	
+	public Integer creaPartita(String nome) {
+		return GamePool.createNewGame(nome);
+	}
+	
+	public boolean esistePartita(int id) {
+		try {
+			GamePool.getGame(id);
+		} catch (NoGameFoundException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public String addGiocatore(int id, String nome) throws NoGameFoundException {
+		System.out.println("nuovo giocatore " + nome);
+		return GamePool.getGame(id).addGiocatore(new Giocatore(nome)).toJson().toString();
+	}
+	
+	public Boolean setMonte(int id, boolean monte) throws NoGameFoundException {
+		System.out.println("set monte " + monte);
+		return GamePool.getGame(id).setMonte(monte);
+	}
+	
+	//smista le carte e da il mazzo all'host
+	public String daiCarte(int id) throws NoGameFoundException {
+		System.out.println("do carte");
+		try {
+			Game g = GamePool.getGame(id);
+			g.daiCarte();
+			return g.getManoGiocatore(g.getHost()).toJson().toString();
+		} catch (NumberOfPlayerException e) {
+			return e.toString();
+		}
+	}
+	
+	public String getMazzoGiocatore(int idGame, String player) throws MediatoreException {
+		System.out.println("do carte al giocatore " + player);
+		Game g = GamePool.getGame(idGame);
+		Mazzo m = g.getManoGiocatore(new Giocatore(player));
+		if(m == null)
+			throw new MediatoreException("Nessun giocatore trovato");
+		if(!g.possoDareMazzoAiGiocatori())
+			throw new MediatoreException("L'host non ha compleato la configurazione");
+		return m.toString();
+	}
+
+}

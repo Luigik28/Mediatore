@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GameServiceService WSDL service -->
+
+  <service name="GameService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.iMerc.it"/>
+      <parameter name="wsdlServiceElement" value="GameServiceService"/>
+      <parameter name="schemaQualified" value="http://exceptions.iMerc.it,http://service.iMerc.it"/>
+      <parameter name="wsdlServicePort" value="GameService"/>
+      <parameter name="className" value="it.iMerc.service.GameService"/>
+      <parameter name="wsdlPortType" value="GameService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMazzoGiocatore" qname="operNS:getMazzoGiocatore" returnQName="retNS:getMazzoGiocatoreReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGame" type="tns:int"/>
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:player" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="creaPartita" qname="operNS:creaPartita" returnQName="retNS:creaPartitaReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nome" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="ciao" qname="operNS:ciao" returnQName="retNS:ciaoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:n" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="esistePartita" qname="operNS:esistePartita" returnQName="retNS:esistePartitaReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addGiocatore" qname="operNS:addGiocatore" returnQName="retNS:addGiocatoreReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nome" type="tns:string"/>
+        <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="daiCarte" qname="operNS:daiCarte" returnQName="retNS:daiCarteReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="setMonte" qname="operNS:setMonte" returnQName="retNS:setMonteReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:monte" type="tns:boolean"/>
+        <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
+      </operation>
+      <parameter name="allowedMethods" value="esistePartita creaPartita addGiocatore setMonte getMazzoGiocatore daiCarte ciao"/>
+
+      <typeMapping xmlns:ns="http://exceptions.iMerc.it" qname="ns:NoGameFoundException" type="java:it.iMerc.exceptions.NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://exceptions.iMerc.it" qname="ns:MediatoreException" type="java:it.iMerc.exceptions.MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
