@@ -20,6 +20,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="fault" type="tns1:MediatoreException"/>
    <element name="creaPartita">
     <complexType>
      <sequence>
@@ -48,6 +49,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="setMonte">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="monte" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMonteResponse">
+    <complexType>
+     <sequence>
+      <element name="setMonteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault1" type="tns1:NoGameFoundException"/>
    <element name="esistePartita">
     <complexType>
      <sequence>
@@ -62,7 +79,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="fault" type="tns1:NoGameFoundException"/>
    <element name="addGiocatore">
     <complexType>
      <sequence>
@@ -92,25 +108,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="setMonte">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-      <element name="monte" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setMonteResponse">
-    <complexType>
-     <sequence>
-      <element name="setMonteReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://exceptions.iMerc.it" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="MediatoreException">
-    <sequence/>
+    <sequence>
+     <element name="faultCode" nillable="true" type="xsd:QName"/>
+    </sequence>
    </complexType>
    <complexType name="NoGameFoundException">
     <complexContent>
@@ -149,6 +152,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getMazzoGiocatoreRequest">
 
       <wsdl:part element="impl:getMazzoGiocatore" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="MediatoreException">
+
+      <wsdl:part element="impl:fault" name="fault">
 
       </wsdl:part>
 
@@ -204,7 +215,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="NoGameFoundException">
 
-      <wsdl:part element="impl:fault" name="fault">
+      <wsdl:part element="impl:fault1" name="fault">
 
       </wsdl:part>
 
@@ -254,6 +265,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
        </wsdl:output>
 
+         <wsdl:fault message="impl:MediatoreException" name="MediatoreException">
+
+       </wsdl:fault>
+
       </wsdl:operation>
 
       <wsdl:operation name="creaPartita">
@@ -280,6 +295,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="setMonte">
+
+         <wsdl:input message="impl:setMonteRequest" name="setMonteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMonteResponse" name="setMonteResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
       <wsdl:operation name="esistePartita">
 
          <wsdl:input message="impl:esistePartitaRequest" name="esistePartitaRequest">
@@ -289,10 +320,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:output message="impl:esistePartitaResponse" name="esistePartitaResponse">
 
        </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -328,22 +355,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setMonte">
-
-         <wsdl:input message="impl:setMonteRequest" name="setMonteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setMonteResponse" name="setMonteResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="GameServiceSoapBinding" type="impl:GameService">
@@ -365,6 +376,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
+
+         <wsdl:fault name="MediatoreException">
+
+            <wsdlsoap:fault name="MediatoreException" use="literal"/>
+
+         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -404,6 +421,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="setMonte">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setMonteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setMonteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
       <wsdl:operation name="esistePartita">
 
          <wsdlsoap:operation soapAction=""/>
@@ -419,12 +460,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
-
-         <wsdl:fault name="NoGameFoundException">
-
-            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
-
-         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -463,30 +498,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="daiCarteResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="NoGameFoundException">
-
-            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setMonte">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setMonteRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setMonteResponse">
 
             <wsdlsoap:body use="literal"/>
 

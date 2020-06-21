@@ -2,10 +2,9 @@ package it.iMerc.exceptions;
 
 import javax.xml.namespace.QName;
 
-import org.apache.axis.AxisFault;
 import org.json.JSONObject;
 
-public class MediatoreException extends AxisFault {
+public class MediatoreException extends Exception {
 
 	/**
 	 * 
@@ -17,17 +16,11 @@ public class MediatoreException extends AxisFault {
 	}
 
 	public JSONObject toJson() {
-		return new JSONObject().put("exception", getClass().toString()).put("message", this.getMessage());
+		return new JSONObject().put("exception", getClass().getName()).put("message", this.getMessage());
 	}
 	
-	@Override
 	public QName getFaultCode() {
 		return new QName(this.getClass().getName());
-	}
-	
-	@Override
-	public String toString() {
-		return toJson().toString();
 	}
 
 }
