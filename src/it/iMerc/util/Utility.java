@@ -19,8 +19,8 @@ public class Utility {
 	
 	//TODO: numero di carte distribuibili dipendentemente da giocatori e monte
 	public static int getNumeroCarteIniziale(int giocatori, boolean monte) throws NumberOfPlayerException {
-		int carte = giocatori == 4 ? 9 : 8;
-		if(giocatori < 4) 
+		int carte = giocatori == 5 ? 8 : 36/giocatori;
+		if(giocatori < 3) 
 			throw new TooFewPlayerException();
 		if(giocatori > 5)
 			throw new TooManyPlayersException();

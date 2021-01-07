@@ -1,5 +1,7 @@
 package it.iMerc.partita;
 
+import java.util.List;
+
 import it.iMerc.exceptions.NumberOfPlayerException;
 
 public interface Game {
@@ -19,4 +21,6 @@ public interface Game {
 	public Mazzo getManoGiocatore(Giocatore g);
 	
 	public Giocatore getHost();
+	
+	public List<Giocatore> getGiocatori();
 }

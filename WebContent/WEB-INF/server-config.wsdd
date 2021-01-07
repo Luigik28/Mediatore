@@ -29,35 +29,48 @@
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
  <ns1:service name="GameService" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="getMazzoGiocatore" qname="ns1:getMazzoGiocatore" returnQName="ns1:getMazzoGiocatoreReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:idGame" type="xsd:int"/>
-   <ns2:parameter qname="ns1:player" type="xsd:string"/>
-   <ns3:fault class="it.iMerc.exceptions.MediatoreException" qname="ns1:fault" type="ns2:MediatoreException" xmlns:ns2="http://exceptions.iMerc.it" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
+  <ns2:operation name="creaPartita" qname="ns1:creaPartita" returnQName="ns1:creaPartitaReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:partita" type="xsd:string"/>
+   <ns2:parameter qname="ns1:giocatore" type="xsd:string"/>
   </ns2:operation>
-  <ns1:operation name="creaPartita" qname="ns3:creaPartita" returnQName="ns3:creaPartitaReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="esistePartita" qname="ns2:esistePartita" returnQName="ns2:esistePartitaReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:id" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="addGiocatore" qname="ns3:addGiocatore" returnQName="ns3:addGiocatoreReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:id" type="xsd:string"/>
    <ns1:parameter qname="ns3:nome" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns3:fault" type="ns4:NoGameFoundException" xmlns:ns4="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:operation name="ciao" qname="ns4:ciao" returnQName="ns4:ciaoReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:n" type="xsd:string"/>
+  <ns1:operation name="ciao" qname="ns5:ciao" returnQName="ns5:ciaoReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:n" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="setMonte" qname="ns5:setMonte" returnQName="ns5:setMonteReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:id" type="xsd:int"/>
-   <ns1:parameter qname="ns5:monte" type="xsd:boolean"/>
-   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns5:fault1" type="ns6:NoGameFoundException" xmlns:ns6="http://exceptions.iMerc.it"/>
+  <ns1:operation name="getMazzoGiocatore" qname="ns6:getMazzoGiocatore" returnQName="ns6:getMazzoGiocatoreReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:idGame" type="xsd:string"/>
+   <ns1:parameter qname="ns6:player" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.MediatoreException" qname="ns6:fault1" type="ns7:MediatoreException" xmlns:ns7="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:operation name="esistePartita" qname="ns7:esistePartita" returnQName="ns7:esistePartitaReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns7:id" type="xsd:int"/>
+  <ns1:operation name="daiCarte" qname="ns8:daiCarte" returnQName="ns8:daiCarteReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:id" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns8:fault" type="ns9:NoGameFoundException" xmlns:ns9="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:operation name="addGiocatore" qname="ns8:addGiocatore" returnQName="ns8:addGiocatoreReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:id" type="xsd:int"/>
-   <ns1:parameter qname="ns8:nome" type="xsd:string"/>
-   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns8:fault1" type="ns9:NoGameFoundException" xmlns:ns9="http://exceptions.iMerc.it"/>
+  <ns1:operation name="setMonte" qname="ns10:setMonte" returnQName="ns10:setMonteReturn" returnType="xsd:boolean" soapAction="" xmlns:ns10="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:id" type="xsd:string"/>
+   <ns1:parameter qname="ns10:monte" type="xsd:boolean"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns10:fault" type="ns11:NoGameFoundException" xmlns:ns11="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:operation name="daiCarte" qname="ns10:daiCarte" returnQName="ns10:daiCarteReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns10:id" type="xsd:int"/>
-   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns10:fault1" type="ns11:NoGameFoundException" xmlns:ns11="http://exceptions.iMerc.it"/>
+  <ns1:operation name="getGiocatori" qname="ns12:getGiocatori" returnQName="ns12:getGiocatoriReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:idGame" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns12:fault" type="ns13:NoGameFoundException" xmlns:ns13="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="esistePartita creaPartita setMonte addGiocatore getMazzoGiocatore daiCarte ciao"/>
+  <ns1:operation name="numeroGiocatori" qname="ns14:numeroGiocatori" returnQName="ns14:numeroGiocatoriReturn" returnType="xsd:int" soapAction="" xmlns:ns14="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:idGame" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns14:fault" type="ns15:NoGameFoundException" xmlns:ns15="http://exceptions.iMerc.it"/>
+  </ns1:operation>
+  <ns1:operation name="getTrionfo" qname="ns16:getTrionfo" returnQName="ns16:getTrionfoReturn" returnType="xsd:string" soapAction="" xmlns:ns16="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns16:idGame" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns16:fault" type="ns17:NoGameFoundException" xmlns:ns17="http://exceptions.iMerc.it"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="esistePartita creaPartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori getTrionfo ciao numeroGiocatori"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="GameService"/>
   <ns1:parameter name="className" value="it.iMerc.service.GameService"/>
@@ -65,8 +78,8 @@
   <ns1:parameter name="schemaQualified" value="http://exceptions.iMerc.it,http://service.iMerc.it"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service.iMerc.it"/>
   <ns1:parameter name="wsdlServiceElement" value="GameServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.NoGameFoundException" xmlns:ns12="http://exceptions.iMerc.it"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.MediatoreException" xmlns:ns13="http://exceptions.iMerc.it"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.NoGameFoundException" xmlns:ns18="http://exceptions.iMerc.it"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.MediatoreException" xmlns:ns19="http://exceptions.iMerc.it"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

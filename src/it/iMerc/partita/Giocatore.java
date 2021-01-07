@@ -1,6 +1,8 @@
 package it.iMerc.partita;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.JSONObject;
 import org.json.JSONPropertyName;
@@ -57,6 +59,39 @@ public class Giocatore implements Serializable {
 	
 	public JSONObject toJson() {
 		return new JSONObject(this);
+	}
+	
+	@Override
+	public String toString() {
+		return this.toJson().toString();
+	}
+
+	public void ordinaCarte(Carta trionfo) {
+		Collections.sort(mano.getCarteCoperte(), new Comparator<Carta>() {
+
+			@Override
+			public int compare(Carta o1, Carta o2) {
+				//Seme di trionfo in testa
+				if(o1.getSeme().equals(trionfo.getSeme()) && !o2.getSeme().equals(trionfo.getSeme()))
+					return -1;
+				if(o2.getSeme().equals(trionfo.getSeme()) && !o1.getSeme().equals(trionfo.getSeme()))
+					return 1;
+				//Ordino per seme
+				if(!o1.getSeme().equals(o2.getSeme()))
+					return o1.getId() - o2.getId();
+				else {
+					if(o1.getNumero() == 7)
+						return -1;
+					if(o2.getNumero() == 7)
+						return 1;
+					if(o1.getNumero() == 1)
+						return -1;
+					if(o2.getNumero() == 1)
+						return 1;
+					return Integer.compare(o2.getNumero(), o1.getNumero());
+				}
+			}
+		});
 	}
 
 }

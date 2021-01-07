@@ -11,22 +11,22 @@ public class FlussoPartita {
 	public static String STATO_CONFIGURAZIONE= "startConf";
 	public static String STATO_END_CONFIGURAZIONE= "endConf";
 	public static String STATO_INIZIO_MANO = "startMano";
+
+	public static Stato StatoIniziale = new Stato(STATO_INIZIALE);
+	public static Stato InizioConfigurazione = new Stato(STATO_CONFIGURAZIONE);
+	public static Stato FineConfigurazione = new Stato(STATO_END_CONFIGURAZIONE);
+	public static Stato InizioMano = new Stato(STATO_INIZIO_MANO);
 	
+	static {
+		StatoIniziale.addDestinazione(InizioConfigurazione);
+		InizioConfigurazione.addDestinazione(FineConfigurazione);
+		FineConfigurazione.addDestinazione(InizioMano);
+	}
 	
 	public FlussoPartita() {
 		//allStati = new LinkedList<Stato>();
 		//TODO: improvements
-		//definisco tutti gli stati
-		Stato statoIniziale = new Stato(STATO_INIZIALE);
-		Stato setInizioConfigurazione = new Stato(STATO_CONFIGURAZIONE);
-		Stato setFineConfigurazione = new Stato(STATO_END_CONFIGURAZIONE);
-		Stato inizioMano = new Stato(STATO_INIZIO_MANO);
-		//definisco le destinazioni
-		statoIniziale.addDestinazione(setInizioConfigurazione);
-		setInizioConfigurazione.addDestinazione(setFineConfigurazione);
-		setFineConfigurazione.addDestinazione(inizioMano);
-		//go!
-		statoCorrente = statoIniziale;
+		statoCorrente = StatoIniziale;
 	}
 	
 	public Stato getStatoCorrente() {
@@ -46,6 +46,12 @@ public class FlussoPartita {
 		return cambio;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof FlussoPartita))
+			return super.equals(obj);
+		else
+			return this.statoCorrente.equals(((FlussoPartita)obj).getStatoCorrente());
+	}
 	
 }

@@ -14,11 +14,14 @@ public class GameService {
 		return n;
 	}
 	
-	public Integer creaPartita(String nome) {
-		return GamePool.createNewGame(nome);
+	public String creaPartita(String partita, String giocatore) {
+		if(partita != null)
+			return GamePool.createNewGame(partita, giocatore);
+		else
+			return GamePool.createNewGame(giocatore);
 	}
 	
-	public boolean esistePartita(int id) {
+	public boolean esistePartita(String id) {
 		try {
 			GamePool.getGame(id);
 		} catch (NoGameFoundException e) {
@@ -27,18 +30,18 @@ public class GameService {
 		return true;
 	}
 	
-	public String addGiocatore(int id, String nome) throws NoGameFoundException {
+	public String addGiocatore(String id, String nome) throws NoGameFoundException {
 		System.out.println("nuovo giocatore " + nome);
 		return GamePool.getGame(id).addGiocatore(new Giocatore(nome)).toJson().toString();
 	}
 	
-	public Boolean setMonte(int id, boolean monte) throws NoGameFoundException {
+	public Boolean setMonte(String id, boolean monte) throws NoGameFoundException {
 		System.out.println("set monte " + monte);
 		return GamePool.getGame(id).setMonte(monte);
 	}
 	
 	//smista le carte e da il mazzo all'host
-	public String daiCarte(int id) throws NoGameFoundException {
+	public String daiCarte(String id) throws NoGameFoundException {
 		System.out.println("do carte");
 		try {
 			Game g = GamePool.getGame(id);
@@ -49,7 +52,7 @@ public class GameService {
 		}
 	}
 	
-	public String getMazzoGiocatore(int idGame, String player) throws MediatoreException {
+	public String getMazzoGiocatore(String idGame, String player) throws MediatoreException {
 		System.out.println("do carte al giocatore " + player);
 		Game g = GamePool.getGame(idGame);
 		Mazzo m = g.getManoGiocatore(new Giocatore(player));
@@ -59,5 +62,16 @@ public class GameService {
 			throw new MediatoreException("L'host non ha compleato la configurazione");
 		return m.toString();
 	}
+	
+	public int numeroGiocatori(String idGame) throws NoGameFoundException {
+		return GamePool.getGame(idGame).getGiocatori().size();
+	}
+	
+	public String getGiocatori(String idGame) throws NoGameFoundException {
+		return GamePool.getGame(idGame).getGiocatori().toString();
+	}
 
+	public String getTrionfo(String idGame) throws NoGameFoundException {
+		return GamePool.getGame(idGame).getTrionfo().toJson().toString();
+	}
 }

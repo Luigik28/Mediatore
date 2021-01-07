@@ -48,29 +48,32 @@ public class Partita implements Game {
 	@Override
 	public void daiCarte() throws NumberOfPlayerException {
 		int cartePerGiocatore = Utility.getNumeroCarteIniziale(giocatori.size(), monte);
-		for (Giocatore g : giocatori)
+		for (Giocatore g : giocatori) 
 			for (int i = 0; i < cartePerGiocatore; i++)
 				g.mettiInMano(mazzo.getCartaRandom());
 		trionfo = mazzo.getTrionfo();
-		flusso.changeStato(new Stato(FlussoPartita.STATO_INIZIO_MANO));
+		System.out.println(trionfo);
+		for (Giocatore g : giocatori)
+			g.ordinaCarte(trionfo);
+		flusso.changeStato(FlussoPartita.FineConfigurazione);
 	}
 
 	@Override
 	public boolean possoDareCarte() {
-		return (flusso.getStatoCorrente().equals(new Stato(FlussoPartita.STATO_END_CONFIGURAZIONE))
-				&& flusso.nextSteps().contains(new Stato(FlussoPartita.STATO_INIZIO_MANO)));
+		return (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione)
+				&& flusso.nextSteps().contains(FlussoPartita.InizioMano));
 		// return true;
 	}
 
 	@Override
 	public boolean possoDareMazzoAiGiocatori() {
-		if (flusso.getStatoCorrente().equals(new Stato(FlussoPartita.STATO_INIZIO_MANO)))
+		if (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione))
 			return true;
 		else {
 			// nel caso la configurazione non sia terminata, aspetto 2 secondi e ricontrollo
 			try {
 				Thread.sleep(2000);
-				if (flusso.getStatoCorrente().equals(new Stato(FlussoPartita.STATO_INIZIO_MANO)))
+				if (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione))
 					return true;
 			} catch (InterruptedException e) {
 				e.printStackTrace();

@@ -32,7 +32,7 @@ public class Carta implements Comparable<Carta>, Serializable {
 	
 	public String getSeme() {
 		String tipo = "";
-		switch (--id/10) {
+		switch ((id - 1)/10) {
 			case 0:
 				tipo = "denare";
 				break;
