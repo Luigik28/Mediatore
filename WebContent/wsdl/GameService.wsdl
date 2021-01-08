@@ -165,6 +165,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="gioca">
+    <complexType>
+     <sequence>
+      <element name="idGame" type="xsd:string"/>
+      <element name="mossa" type="xsd:int"/>
+      <element name="carta" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="giocaResponse">
+    <complexType>
+     <sequence>
+      <element name="giocaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getRemainingTime">
     <complexType>
      <sequence>
@@ -252,6 +268,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="giocaRequest">
+
+      <wsdl:part element="impl:gioca" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="daiCarteRequest">
 
       <wsdl:part element="impl:daiCarte" name="parameters">
@@ -327,6 +351,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="esistePartitaRequest">
 
       <wsdl:part element="impl:esistePartita" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="giocaResponse">
+
+      <wsdl:part element="impl:giocaResponse" name="parameters">
 
       </wsdl:part>
 
@@ -567,6 +599,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
 
        </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="gioca">
+
+         <wsdl:input message="impl:giocaRequest" name="giocaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:giocaResponse" name="giocaResponse">
+
+       </wsdl:output>
 
       </wsdl:operation>
 
@@ -835,6 +879,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
 
          </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="gioca">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="giocaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="giocaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
 
       </wsdl:operation>
 

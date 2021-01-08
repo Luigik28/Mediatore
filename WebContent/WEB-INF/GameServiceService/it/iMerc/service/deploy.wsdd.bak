@@ -65,11 +65,16 @@
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
+      <operation name="gioca" qname="operNS:gioca" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:giocaReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mossa" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carta" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="getRemainingTime" qname="operNS:getRemainingTime" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getRemainingTimeReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
-      <parameter name="allowedMethods" value="getRemainingTime esistePartita creaPartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori getTrionfo ciao numeroGiocatori startGame"/>
+      <parameter name="allowedMethods" value="getRemainingTime esistePartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori creaPartita gioca getTrionfo ciao numeroGiocatori startGame"/>
 
       <typeMapping
         xmlns:ns="http://exceptions.iMerc.it"

@@ -55,11 +55,16 @@
         <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGame" type="tns:string"/>
         <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
       </operation>
+      <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="gioca" qname="operNS:gioca" returnQName="retNS:giocaReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGame" type="tns:string"/>
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mossa" type="tns:int"/>
+        <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:carta" type="tns:int"/>
+      </operation>
       <operation xmlns:operNS="http://service.iMerc.it" xmlns:retNS="http://service.iMerc.it" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getRemainingTime" qname="operNS:getRemainingTime" returnQName="retNS:getRemainingTimeReturn" returnType="rtns:int" soapAction="">
         <parameter xmlns:pns="http://service.iMerc.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGame" type="tns:string"/>
         <fault xmlns:fns="http://service.iMerc.it" xmlns:tns="http://exceptions.iMerc.it" name="NoGameFoundException" qname="fns:fault" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException"/>
       </operation>
-      <parameter name="allowedMethods" value="getRemainingTime esistePartita creaPartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori getTrionfo ciao numeroGiocatori startGame"/>
+      <parameter name="allowedMethods" value="getRemainingTime esistePartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori creaPartita gioca getTrionfo ciao numeroGiocatori startGame"/>
 
       <typeMapping xmlns:ns="http://exceptions.iMerc.it" qname="ns:NoGameFoundException" type="java:it.iMerc.exceptions.NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://exceptions.iMerc.it" qname="ns:MediatoreException" type="java:it.iMerc.exceptions.MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>

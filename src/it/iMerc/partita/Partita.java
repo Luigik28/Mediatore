@@ -9,6 +9,11 @@ import it.iMerc.util.Utility;
 
 public class Partita implements Game {
 
+	public static final int PASSA = 1;
+	public static final int CHIAMA = 2;
+	public static final int SOLA = 3;
+	public static final int GIOCA_CARTA = 4;
+
 	private Mazzo mazzo;
 	private List<Giocatore> giocatori;
 	private Giocatore host;
@@ -117,6 +122,15 @@ public class Partita implements Game {
 
 	public void setCurrentPlaying(int currentPlaying) {
 		this.currentPlaying = currentPlaying;
+	}
+	
+	public int nextPlayer() {
+		if(currentPlaying == giocatori.size() - 1)
+			setCurrentPlaying(0);
+		else
+			setCurrentPlaying(getCurrentPlaying() + 1);
+		giocatori.get(getCurrentPlaying()).setT0(System.currentTimeMillis());
+		return getCurrentPlaying();
 	}
 
 }

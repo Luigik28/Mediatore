@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -74,11 +74,16 @@
    <ns1:parameter qname="ns18:idGame" type="xsd:string"/>
    <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns18:fault" type="ns19:NoGameFoundException" xmlns:ns19="http://exceptions.iMerc.it"/>
   </ns1:operation>
-  <ns1:operation name="getRemainingTime" qname="ns20:getRemainingTime" returnQName="ns20:getRemainingTimeReturn" returnType="xsd:int" soapAction="" xmlns:ns20="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="gioca" qname="ns20:gioca" returnQName="ns20:giocaReturn" returnType="xsd:string" soapAction="" xmlns:ns20="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns20:idGame" type="xsd:string"/>
-   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns20:fault" type="ns21:NoGameFoundException" xmlns:ns21="http://exceptions.iMerc.it"/>
+   <ns1:parameter qname="ns20:mossa" type="xsd:int"/>
+   <ns1:parameter qname="ns20:carta" type="xsd:int"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getRemainingTime esistePartita creaPartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori getTrionfo ciao numeroGiocatori startGame"/>
+  <ns1:operation name="getRemainingTime" qname="ns21:getRemainingTime" returnQName="ns21:getRemainingTimeReturn" returnType="xsd:int" soapAction="" xmlns:ns21="http://service.iMerc.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns21:idGame" type="xsd:string"/>
+   <ns1:fault class="it.iMerc.exceptions.NoGameFoundException" qname="ns21:fault" type="ns22:NoGameFoundException" xmlns:ns22="http://exceptions.iMerc.it"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getRemainingTime esistePartita addGiocatore setMonte getMazzoGiocatore daiCarte getGiocatori creaPartita gioca getTrionfo ciao numeroGiocatori startGame"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="GameService"/>
   <ns1:parameter name="className" value="it.iMerc.service.GameService"/>
@@ -86,8 +91,8 @@
   <ns1:parameter name="schemaQualified" value="http://exceptions.iMerc.it,http://service.iMerc.it"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service.iMerc.it"/>
   <ns1:parameter name="wsdlServiceElement" value="GameServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.NoGameFoundException" xmlns:ns22="http://exceptions.iMerc.it"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.MediatoreException" xmlns:ns23="http://exceptions.iMerc.it"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:NoGameFoundException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.NoGameFoundException" xmlns:ns23="http://exceptions.iMerc.it"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:MediatoreException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:it.iMerc.exceptions.MediatoreException" xmlns:ns24="http://exceptions.iMerc.it"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

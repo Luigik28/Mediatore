@@ -14,6 +14,7 @@ public class Giocatore implements Serializable {
 	private String nome;
 	private long t0 = 0;
 	private int TEMPO_MAX = 20000;
+	private boolean chiamante = false;
 	
 	public Giocatore() {
 		this.mano = new Mazzo();
@@ -103,6 +104,14 @@ public class Giocatore implements Serializable {
 	public int getTempoRimasto() {
 		long now = System.currentTimeMillis();
 		return (int) (TEMPO_MAX - (now - t0));
+	}
+
+	public boolean isChiamante() {
+		return chiamante;
+	}
+
+	public void setChiamante(boolean chiamante) {
+		this.chiamante = chiamante;
 	}
 
 }
