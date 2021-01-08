@@ -7,6 +7,7 @@ import it.iMerc.gamePool.GamePool;
 import it.iMerc.partita.Game;
 import it.iMerc.partita.Giocatore;
 import it.iMerc.partita.Mazzo;
+import it.iMerc.partita.Partita;
 
 public class GameService {
 	
@@ -83,5 +84,12 @@ public class GameService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public int getRemainingTime(String idGame) throws NoGameFoundException {
+		Partita p = (Partita) GamePool.getGame(idGame);
+		Giocatore g = p.getGiocatori().get(p.getCurrentPlaying());
+		System.out.println(g.getTempoRimasto());
+		return g.getTempoRimasto();
 	}
 }

@@ -23,4 +23,5 @@ public interface Game {
 	public List<Giocatore> getGiocatori();
 	
 	public void startGame() throws MediatoreException;
+	
 }

@@ -16,6 +16,7 @@ public class Partita implements Game {
 	private FlussoPartita flusso;
 	private boolean monte;
 	private int primoDiMano = 0;
+	private int currentPlaying;
 
 	public Partita(FlussoPartita f, Giocatore host) {
 		mazzo = Utility.getMazzoIniziale();
@@ -106,6 +107,16 @@ public class Partita implements Game {
 		if(!flusso.getStatoCorrente().equals(FlussoPartita.Configurazione))
 			throw new MediatoreException("Configurazione non terminata");
 		flusso.goNextStep();
+		setCurrentPlaying(primoDiMano);
+		giocatori.get(primoDiMano).setT0(System.currentTimeMillis());
+	}
+
+	public int getCurrentPlaying() {
+		return currentPlaying;
+	}
+
+	public void setCurrentPlaying(int currentPlaying) {
+		this.currentPlaying = currentPlaying;
 	}
 
 }
