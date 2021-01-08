@@ -92,7 +92,7 @@ public class GameService {
 		return g.getTempoRimasto();
 	}
 	
-	public String gioca(String idGame, int mossa, int carta) throws NoGameFoundException {
+	public int gioca(String idGame, int mossa, int carta) throws NoGameFoundException {
 		Partita p = (Partita) GamePool.getGame(idGame);
 		switch(mossa) {
 		case Partita.PASSA:
@@ -105,6 +105,6 @@ public class GameService {
 		case Partita.GIOCA_CARTA:
 			break;
 		}
-		return "";
+		return p.getCurrentPlaying();
 	}
 }
