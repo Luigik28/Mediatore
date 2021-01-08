@@ -1,16 +1,13 @@
 package it.iMerc.partita;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Stato implements Comparable<Stato>{
 	
 	private String nomeStato;
-	private List<Stato> destinazioni = new LinkedList<Stato>();
+	private Stato destinazione;
 	
 	
-	public Stato(String nomeStato) {
-		this.destinazioni = new LinkedList<Stato>();
+	public Stato(String nomeStato, Stato next) {
+		this.destinazione = next;
 		this.nomeStato = nomeStato;
 	}
 	
@@ -18,16 +15,8 @@ public class Stato implements Comparable<Stato>{
 		return nomeStato;
 	}
 	
-	public List<Stato> getDestinazioni() {
-		return destinazioni;
-	}
-	
-	public void addDestinazione(Stato s) {
-		destinazioni.add(s);
-	}
-	
-	public boolean canChangeto(Stato stato) {
-		return destinazioni.contains(stato);
+	public Stato getNextStato() {
+		return destinazione;
 	}
 	
 	@Override

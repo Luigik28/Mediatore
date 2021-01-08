@@ -41,7 +41,7 @@ public class GameService {
 	}
 	
 	//smista le carte e da il mazzo all'host
-	public String daiCarte(String id) throws NoGameFoundException {
+	public String daiCarte(String id) throws MediatoreException {
 		System.out.println("do carte");
 		try {
 			Game g = GamePool.getGame(id);
@@ -73,5 +73,15 @@ public class GameService {
 
 	public String getTrionfo(String idGame) throws NoGameFoundException {
 		return GamePool.getGame(idGame).getTrionfo().toJson().toString();
+	}
+	
+	public boolean startGame(String idGame) throws NoGameFoundException {
+		try {
+			GamePool.getGame(idGame).startGame();
+			return true;
+		} catch (MediatoreException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

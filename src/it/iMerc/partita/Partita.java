@@ -3,6 +3,7 @@ package it.iMerc.partita;
 import java.util.LinkedList;
 import java.util.List;
 
+import it.iMerc.exceptions.MediatoreException;
 import it.iMerc.exceptions.NumberOfPlayerException;
 import it.iMerc.util.Utility;
 
@@ -14,6 +15,7 @@ public class Partita implements Game {
 	private Carta trionfo;
 	private FlussoPartita flusso;
 	private boolean monte;
+	private int primoDiMano = 0;
 
 	public Partita(FlussoPartita f, Giocatore host) {
 		mazzo = Utility.getMazzoIniziale();
@@ -21,7 +23,7 @@ public class Partita implements Game {
 		this.host = host;
 		addGiocatore(this.host);
 		flusso = f;
-		flusso.changeStato(new Stato(FlussoPartita.STATO_CONFIGURAZIONE));
+		flusso.goNextStep();
 	}
 
 	@Override
@@ -41,39 +43,32 @@ public class Partita implements Game {
 
 	@Override
 	public boolean setMonte(boolean monte) {
-		flusso.changeStato(new Stato(FlussoPartita.STATO_END_CONFIGURAZIONE));
 		return this.monte = monte;
 	}
 
 	@Override
-	public void daiCarte() throws NumberOfPlayerException {
+	public void daiCarte() throws MediatoreException {
 		int cartePerGiocatore = Utility.getNumeroCarteIniziale(giocatori.size(), monte);
 		for (Giocatore g : giocatori) 
 			for (int i = 0; i < cartePerGiocatore; i++)
 				g.mettiInMano(mazzo.getCartaRandom());
 		trionfo = mazzo.getTrionfo();
-		System.out.println(trionfo);
 		for (Giocatore g : giocatori)
 			g.ordinaCarte(trionfo);
-		flusso.changeStato(FlussoPartita.FineConfigurazione);
-	}
-
-	@Override
-	public boolean possoDareCarte() {
-		return (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione)
-				&& flusso.nextSteps().contains(FlussoPartita.InizioMano));
-		// return true;
+		if(!flusso.getStatoCorrente().equals(FlussoPartita.ConfigurazioneEnd))
+			throw new MediatoreException("Errore nel flusso della partita");
+		flusso.goNextStep();
 	}
 
 	@Override
 	public boolean possoDareMazzoAiGiocatori() {
-		if (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione))
+		if (flusso.getStatoCorrente().equals(FlussoPartita.ManoChiamante))
 			return true;
 		else {
 			// nel caso la configurazione non sia terminata, aspetto 2 secondi e ricontrollo
 			try {
 				Thread.sleep(2000);
-				if (flusso.getStatoCorrente().equals(FlussoPartita.FineConfigurazione))
+				if (flusso.getStatoCorrente().equals(FlussoPartita.ManoChiamante))
 					return true;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -100,6 +95,17 @@ public class Partita implements Game {
 	@Override
 	public Giocatore getHost() {
 		return host;
+	}
+
+	@Override
+	public void startGame() throws MediatoreException {
+		if(giocatori.size() < 3)
+			throw new NumberOfPlayerException("Ci sono meno di 3 giocatori");
+		if(giocatori.size() > 5)
+			throw new NumberOfPlayerException("Ci sono più di 5 giocatori");
+		if(!flusso.getStatoCorrente().equals(FlussoPartita.Configurazione))
+			throw new MediatoreException("Configurazione non terminata");
+		flusso.goNextStep();
 	}
 
 }

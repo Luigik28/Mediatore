@@ -2,7 +2,7 @@ package it.iMerc.partita;
 
 import java.util.List;
 
-import it.iMerc.exceptions.NumberOfPlayerException;
+import it.iMerc.exceptions.MediatoreException;
 
 public interface Game {
 	
@@ -10,11 +10,9 @@ public interface Game {
 	
 	public boolean setMonte(boolean monte);
 	
-	public boolean possoDareCarte();
-	
 	public boolean possoDareMazzoAiGiocatori();
 
-	public void daiCarte() throws NumberOfPlayerException;
+	public void daiCarte() throws MediatoreException;
 	
 	public Carta getTrionfo();
 	
@@ -23,4 +21,6 @@ public interface Game {
 	public Giocatore getHost();
 	
 	public List<Giocatore> getGiocatori();
+	
+	public void startGame() throws MediatoreException;
 }

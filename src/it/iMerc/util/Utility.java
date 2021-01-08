@@ -12,8 +12,8 @@ public class Utility {
 	
 	public static Mazzo getMazzoIniziale() {
 		Mazzo mazzo = new Mazzo();
-		for(int i = 0; i < 40; i++)
-			mazzo.addCartaCoperta(new Carta(i+1));
+		for(int i = 1; i <= 40; i++)
+			mazzo.addCartaCoperta(new Carta(i));
 		return mazzo;
 	}
 	
