@@ -21,7 +21,7 @@ public class Partita implements Game {
 	private FlussoPartita flusso;
 	private boolean monte;
 	private int primoDiMano = 0;
-	private int currentPlaying;
+	private int currentPlaying = -1;
 
 	public Partita(FlussoPartita f, Giocatore host) {
 		mazzo = Utility.getMazzoIniziale();
@@ -113,7 +113,11 @@ public class Partita implements Game {
 			throw new MediatoreException("Configurazione non terminata");
 		flusso.goNextStep();
 		setCurrentPlaying(primoDiMano);
-		giocatori.get(primoDiMano).setT0(System.currentTimeMillis());
+	}
+	
+	private void setActivePlayer(int giocatore) {
+		for(int i = 0; i < giocatori.size(); i++)
+			giocatori.get(i).setActive(i == giocatore);
 	}
 
 	public int getCurrentPlaying() {
@@ -122,6 +126,8 @@ public class Partita implements Game {
 
 	public void setCurrentPlaying(int currentPlaying) {
 		this.currentPlaying = currentPlaying;
+		setActivePlayer(getCurrentPlaying());
+		giocatori.get(getCurrentPlaying()).setT0(System.currentTimeMillis());
 	}
 	
 	public int nextPlayer() {
@@ -129,8 +135,6 @@ public class Partita implements Game {
 			setCurrentPlaying(0);
 		else
 			setCurrentPlaying(getCurrentPlaying() + 1);
-		giocatori.get(getCurrentPlaying()).setT0(System.currentTimeMillis());
-		giocatori.get(getCurrentPlaying()).setActive(true);
 		return getCurrentPlaying();
 	}
 
@@ -139,7 +143,31 @@ public class Partita implements Game {
 			return Partita.PASSA;
 		else
 			return 1;
-		
+	}
+
+	public void updateGiocatori() {
+		if(giocatori.get(getCurrentPlaying()).getTempoRimasto() < 0)
+			gioca(Partita.TIMEOUT);
+	}
+	
+	public int gioca(int mossa) {
+		if(mossa == Partita.TIMEOUT)
+			mossa = timeout();
+		switch(mossa) {
+		case Partita.PASSA:
+			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
+			nextPlayer();
+			break;
+		case Partita.CHIAMA:
+			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
+			break;
+		case Partita.SOLA:
+			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
+			break;
+		default:
+			break;
+		}
+		return getCurrentPlaying();
 	}
 
 }

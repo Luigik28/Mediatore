@@ -125,11 +125,11 @@ public class Giocatore implements Serializable {
 		this.ultimaMossa = ultimaMossa;
 	}
 
+	@JSONPropertyName("isActive")
 	public boolean isActive() {
 		return isActive;
 	}
 
-	@JSONPropertyName("isActive")
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
