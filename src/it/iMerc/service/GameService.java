@@ -92,17 +92,22 @@ public class GameService {
 		return g.getTempoRimasto();
 	}
 	
-	public int gioca(String idGame, int mossa, int carta) throws NoGameFoundException {
+	public int gioca(String idGame, int mossa) throws NoGameFoundException {
 		Partita p = (Partita) GamePool.getGame(idGame);
+		if(mossa == Partita.TIMEOUT)
+			mossa = p.timeout();
 		switch(mossa) {
 		case Partita.PASSA:
+			p.getGiocatori().get(p.getCurrentPlaying()).setUltimaMossa(mossa);
 			p.nextPlayer();
 			break;
 		case Partita.CHIAMA:
+			p.getGiocatori().get(p.getCurrentPlaying()).setUltimaMossa(mossa);
 			break;
 		case Partita.SOLA:
+			p.getGiocatori().get(p.getCurrentPlaying()).setUltimaMossa(mossa);
 			break;
-		case Partita.GIOCA_CARTA:
+		default:
 			break;
 		}
 		return p.getCurrentPlaying();

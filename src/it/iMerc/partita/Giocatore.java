@@ -13,8 +13,10 @@ public class Giocatore implements Serializable {
 	private Mazzo mano;
 	private String nome;
 	private long t0 = 0;
-	private int TEMPO_MAX = 20000;
+	private int TEMPO_MAX = 30000;
 	private boolean chiamante = false;
+	private int ultimaMossa = 0;
+	private boolean isActive = false;
 	
 	public Giocatore() {
 		this.mano = new Mazzo();
@@ -112,6 +114,24 @@ public class Giocatore implements Serializable {
 
 	public void setChiamante(boolean chiamante) {
 		this.chiamante = chiamante;
+	}
+
+	@JSONPropertyName("ultimaMossa")
+	public int getUltimaMossa() {
+		return ultimaMossa;
+	}
+
+	public void setUltimaMossa(int ultimaMossa) {
+		this.ultimaMossa = ultimaMossa;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	@JSONPropertyName("isActive")
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 }

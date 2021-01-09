@@ -9,10 +9,10 @@ import it.iMerc.util.Utility;
 
 public class Partita implements Game {
 
-	public static final int PASSA = 1;
-	public static final int CHIAMA = 2;
-	public static final int SOLA = 3;
-	public static final int GIOCA_CARTA = 4;
+	public static final int TIMEOUT = 0;
+	public static final int PASSA = -1;
+	public static final int CHIAMA = -2;
+	public static final int SOLA = -3;
 
 	private Mazzo mazzo;
 	private List<Giocatore> giocatori;
@@ -130,7 +130,16 @@ public class Partita implements Game {
 		else
 			setCurrentPlaying(getCurrentPlaying() + 1);
 		giocatori.get(getCurrentPlaying()).setT0(System.currentTimeMillis());
+		giocatori.get(getCurrentPlaying()).setActive(true);
 		return getCurrentPlaying();
+	}
+
+	public int timeout() {
+		if(flusso.getStatoCorrente().equals(FlussoPartita.ManoChiamante))
+			return Partita.PASSA;
+		else
+			return 1;
+		
 	}
 
 }
