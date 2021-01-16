@@ -1,9 +1,12 @@
 package it.iMerc.service;
 
+import java.util.LinkedList;
+
 import it.iMerc.exceptions.MediatoreException;
 import it.iMerc.exceptions.NoGameFoundException;
 import it.iMerc.exceptions.NumberOfPlayerException;
 import it.iMerc.gamePool.GamePool;
+import it.iMerc.partita.Carta;
 import it.iMerc.partita.Game;
 import it.iMerc.partita.Giocatore;
 import it.iMerc.partita.Mazzo;
@@ -38,7 +41,8 @@ public class GameService {
 	
 	public Boolean setMonte(String id, boolean monte) throws NoGameFoundException {
 		System.out.println("set monte " + monte);
-		return GamePool.getGame(id).setMonte(monte);
+		GamePool.getGame(id).setMonte(monte);
+		return monte;
 	}
 	
 	//smista le carte e da il mazzo all'host
@@ -87,17 +91,33 @@ public class GameService {
 	}
 	
 	public int getRemainingTime(String idGame) throws NoGameFoundException {
-		Partita p = (Partita) GamePool.getGame(idGame);
+		Partita p = GamePool.getGame(idGame);
 		Giocatore g = p.getGiocatoreAttivo();
 		return g.getTempoRimasto();
 	}
 	
 	public int gioca(String idGame, int mossa) throws NoGameFoundException {
-		return ((Partita) GamePool.getGame(idGame)).gioca(mossa);
+		return GamePool.getGame(idGame).gioca(mossa);
+	}
+	
+	public boolean setCarteMonte(String idGame, int carta1, int carta2, int carta3, int carta4) throws NoGameFoundException {
+		Partita p = GamePool.getGame(idGame);
+		LinkedList<Carta> newMonte = new LinkedList<Carta>();
+		newMonte.add(new Carta(carta1));
+		newMonte.add(new Carta(carta2));
+		newMonte.add(new Carta(carta3));
+		newMonte.add(new Carta(carta4));	
+		p.setCarteMonte(newMonte);
+		return true;
+	}
+	
+	public String getMonte(String idGame) throws NoGameFoundException {
+		Partita p = GamePool.getGame(idGame);
+		return p.getMonte().toString();
 	}
 	
 	public String updateGiocatori(String idGame) throws NoGameFoundException {
-		Partita p = ((Partita) GamePool.getGame(idGame));
+		Partita p = GamePool.getGame(idGame);
 		synchronized (p) {
 			p.updateGiocatori();
 		}

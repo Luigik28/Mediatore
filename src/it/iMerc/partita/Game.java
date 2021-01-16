@@ -8,8 +8,6 @@ public interface Game {
 	
 	public Giocatore addGiocatore(Giocatore g);
 	
-	public boolean setMonte(boolean monte);
-	
 	public boolean possoDareMazzoAiGiocatori();
 
 	public void daiCarte() throws MediatoreException;

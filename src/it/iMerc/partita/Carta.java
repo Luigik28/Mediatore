@@ -76,7 +76,7 @@ public class Carta implements Comparable<Carta>, Serializable {
 	
 	@Override
 	public String toString() {
-		return getNumero() + " di " + getSeme();
+		return this.toJson().toString();
 	}
 
 	@Override

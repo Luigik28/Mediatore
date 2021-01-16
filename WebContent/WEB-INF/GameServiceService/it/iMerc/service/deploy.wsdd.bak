@@ -34,21 +34,13 @@
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
+      <operation name="daiCarte" qname="operNS:daiCarte" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:daiCarteReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="MediatoreException" qname="fns:fault1" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.MediatoreException" type="tns:MediatoreException" xmlns:tns="http://exceptions.iMerc.it"/>
+      </operation>
       <operation name="setMonte" qname="operNS:setMonte" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:setMonteReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:id" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:monte" xmlns:pns="http://service.iMerc.it" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
-      </operation>
-      <operation name="startGame" qname="operNS:startGame" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:startGameReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
-      </operation>
-      <operation name="numeroGiocatori" qname="operNS:numeroGiocatori" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:numeroGiocatoriReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
-      </operation>
-      <operation name="getGiocatori" qname="operNS:getGiocatori" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getGiocatoriReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
       <operation name="addGiocatore" qname="operNS:addGiocatore" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:addGiocatoreReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
@@ -56,11 +48,11 @@
         <parameter qname="pns:nome" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
-      <operation name="daiCarte" qname="operNS:daiCarte" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:daiCarteReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:id" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="MediatoreException" qname="fns:fault1" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.MediatoreException" type="tns:MediatoreException" xmlns:tns="http://exceptions.iMerc.it"/>
+      <operation name="getGiocatori" qname="operNS:getGiocatori" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getGiocatoriReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
-      <operation name="getTrionfo" qname="operNS:getTrionfo" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getTrionfoReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="startGame" qname="operNS:startGame" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:startGameReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
@@ -69,16 +61,36 @@
         <parameter qname="pns:player" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="MediatoreException" qname="fns:fault1" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.MediatoreException" type="tns:MediatoreException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
+      <operation name="numeroGiocatori" qname="operNS:numeroGiocatori" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:numeroGiocatoriReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
+      </operation>
       <operation name="gioca" qname="operNS:gioca" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:giocaReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:mossa" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
+      </operation>
+      <operation name="getTrionfo" qname="operNS:getTrionfo" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getTrionfoReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
       <operation name="updateGiocatori" qname="operNS:updateGiocatori" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:updateGiocatoriReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
       </operation>
-      <parameter name="allowedMethods" value="getRemainingTime esistePartita setMonte addGiocatore getGiocatori daiCarte getMazzoGiocatore creaPartita gioca getTrionfo ciao numeroGiocatori startGame updateGiocatori"/>
+      <operation name="getMonte" qname="operNS:getMonte" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:getMonteReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
+      </operation>
+      <operation name="setCarteMonte" qname="operNS:setCarteMonte" xmlns:operNS="http://service.iMerc.it" returnQName="retNS:setCarteMonteReturn" xmlns:retNS="http://service.iMerc.it" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idGame" xmlns:pns="http://service.iMerc.it" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carta1" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carta2" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carta3" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carta4" xmlns:pns="http://service.iMerc.it" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NoGameFoundException" qname="fns:fault" xmlns:fns="http://service.iMerc.it" class="it.iMerc.exceptions.NoGameFoundException" type="tns:NoGameFoundException" xmlns:tns="http://exceptions.iMerc.it"/>
+      </operation>
+      <parameter name="allowedMethods" value="getRemainingTime esistePartita setMonte addGiocatore daiCarte getGiocatori getMazzoGiocatore setCarteMonte creaPartita getMonte gioca getTrionfo ciao numeroGiocatori startGame updateGiocatori"/>
 
       <typeMapping
         xmlns:ns="http://exceptions.iMerc.it"

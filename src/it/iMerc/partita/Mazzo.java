@@ -51,7 +51,7 @@ public class Mazzo implements Serializable {
 	@JSONPropertyIgnore
 	public Carta getTrionfo() {
 		if (getCarteInMano() > 0)
-			return carteCoperte.get(new Random().nextInt(getCarteInMano()));
+			return consegnaCarta(new Random().nextInt(getCarteInMano()));
 		else
 			return null;
 	}
@@ -63,6 +63,10 @@ public class Mazzo implements Serializable {
 			bean += c.getId() + ";";
 		}
 		return bean.substring(0, bean.length()-1);
+	}
+	
+	public boolean stannoAncoraCarte() {
+		return carteCoperte.size() > 0;
 	}
 	
 	public JSONObject toJson() {

@@ -35,12 +35,12 @@ public class GamePool {
 		return addGame(new Partita(new FlussoPartita(), new Giocatore(host)));
 	}
 	
-	public static Game getGame(Object key) throws NoGameFoundException {
+	public static Partita getGame(Object key) throws NoGameFoundException {
 		Game g = pool.get(key);
 		if(g == null) {
 			throw new NoGameFoundException();
 		}
-		return g;
+		return (Partita) g;
 	}
 	
 	private static int getNextId() {

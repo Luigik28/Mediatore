@@ -13,15 +13,17 @@ public class Partita implements Game {
 	public static final int PASSA = -1;
 	public static final int CHIAMA = -2;
 	public static final int SOLA = -3;
+	public static final int MONTE_PRONTO = -4;
 
 	private Mazzo mazzo;
 	private List<Giocatore> giocatori;
 	private Giocatore host;
 	private Carta trionfo;
 	private FlussoPartita flusso;
-	private boolean monte;
+	private boolean bMonte;
 	private int primoDiMano = 0;
 	private int currentPlaying = -1;
+	private LinkedList<Carta> monte = new LinkedList<Carta>();
 
 	public Partita(FlussoPartita f, Giocatore host) {
 		mazzo = Utility.getMazzoIniziale();
@@ -47,23 +49,33 @@ public class Partita implements Game {
 		return giocatori;
 	}
 
-	@Override
-	public boolean setMonte(boolean monte) {
-		return this.monte = monte;
+	public void setMonte(boolean monte) {
+		this.bMonte = monte;
+	}
+	
+	public void setCarteMonte(LinkedList<Carta> monte) {
+		this.monte = monte;
 	}
 
 	@Override
 	public void daiCarte() throws MediatoreException {
-		int cartePerGiocatore = Utility.getNumeroCarteIniziale(giocatori.size(), monte);
+		int cartePerGiocatore = Utility.getNumeroCarteIniziale(giocatori.size(), bMonte);
 		for (Giocatore g : giocatori) 
 			for (int i = 0; i < cartePerGiocatore; i++)
 				g.mettiInMano(mazzo.getCartaRandom());
 		trionfo = mazzo.getTrionfo();
+		monte.add(trionfo);
+		while (mazzo.stannoAncoraCarte())
+			monte.add(mazzo.getCartaRandom());
 		for (Giocatore g : giocatori)
 			g.ordinaCarte(trionfo);
 		if(!flusso.getStatoCorrente().equals(FlussoPartita.ConfigurazioneEnd))
 			throw new MediatoreException("Errore nel flusso della partita");
 		flusso.goNextStep();
+	}
+	
+	public LinkedList<Carta> getMonte() {
+		return monte;
 	}
 
 	@Override
@@ -152,6 +164,11 @@ public class Partita implements Game {
 		else
 			return 1;
 	}
+	
+	public void chiama() {
+		getGiocatoreAttivo().setChiamante(true);
+		this.flusso.goNextStep();
+	}
 
 	public void updateGiocatori() {
 		if(getGiocatoreAttivo().getTempoRimasto() < 0)
@@ -163,18 +180,23 @@ public class Partita implements Game {
 			mossa = timeout();
 		switch(mossa) {
 		case Partita.PASSA:
+			nextPlayer();
 			break;
 		case Partita.CHIAMA:
-			getGiocatoreAttivo().setChiamante(true);
+			chiama();
 			break;
 		case Partita.SOLA:
 			break;
+		case Partita.MONTE_PRONTO:
+			this.flusso.goNextStep();
+			//TODO setgiocatoreattivo il primo di mano
+			break;
 		default:
 			getGiocatoreAttivo().giocaCarta(new Carta(mossa));
+			nextPlayer();
 			break;
 		}
 		getGiocatoreAttivo().setUltimaMossa(mossa);
-		nextPlayer();
 		return getCurrentPlaying();
 	}
 
