@@ -97,7 +97,10 @@ public class GameService {
 	}
 	
 	public String updateGiocatori(String idGame) throws NoGameFoundException {
-		((Partita) GamePool.getGame(idGame)).updateGiocatori();		
+		Partita p = ((Partita) GamePool.getGame(idGame));
+		synchronized (p) {
+			p.updateGiocatori();
+		}
 		return GamePool.getGame(idGame).getGiocatori().toString();
 	}
 }

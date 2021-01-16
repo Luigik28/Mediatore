@@ -102,7 +102,8 @@ public class Giocatore implements Serializable {
 	public void setT0(long milli) {
 		t0 = milli;
 	}
-	
+
+	@JSONPropertyName("tempoRimasto")
 	public int getTempoRimasto() {
 		long now = System.currentTimeMillis();
 		return (int) (TEMPO_MAX - (now - t0));

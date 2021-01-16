@@ -5,38 +5,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service.iMerc.it" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://exceptions.iMerc.it"/>
-   <element name="addGiocatore">
+   <element name="ciao">
     <complexType>
      <sequence>
-      <element name="id" type="xsd:string"/>
-      <element name="nome" type="xsd:string"/>
+      <element name="n" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="addGiocatoreResponse">
+   <element name="ciaoResponse">
     <complexType>
      <sequence>
-      <element name="addGiocatoreReturn" type="xsd:string"/>
+      <element name="ciaoReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="fault" type="tns1:NoGameFoundException"/>
-   <element name="getMazzoGiocatore">
-    <complexType>
-     <sequence>
-      <element name="idGame" type="xsd:string"/>
-      <element name="player" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getMazzoGiocatoreResponse">
-    <complexType>
-     <sequence>
-      <element name="getMazzoGiocatoreReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="fault1" type="tns1:MediatoreException"/>
    <element name="creaPartita">
     <complexType>
      <sequence>
@@ -49,21 +31,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="creaPartitaReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setMonte">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:string"/>
-      <element name="monte" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setMonteResponse">
-    <complexType>
-     <sequence>
-      <element name="setMonteReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -81,45 +48,47 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="daiCarte">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="daiCarteResponse">
-    <complexType>
-     <sequence>
-      <element name="daiCarteReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="ciao">
-    <complexType>
-     <sequence>
-      <element name="n" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="ciaoResponse">
-    <complexType>
-     <sequence>
-      <element name="ciaoReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getGiocatori">
+   <element name="getRemainingTime">
     <complexType>
      <sequence>
       <element name="idGame" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getGiocatoriResponse">
+   <element name="getRemainingTimeResponse">
     <complexType>
      <sequence>
-      <element name="getGiocatoriReturn" type="xsd:string"/>
+      <element name="getRemainingTimeReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:NoGameFoundException"/>
+   <element name="setMonte">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+      <element name="monte" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMonteResponse">
+    <complexType>
+     <sequence>
+      <element name="setMonteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="startGame">
+    <complexType>
+     <sequence>
+      <element name="idGame" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="startGameResponse">
+    <complexType>
+     <sequence>
+      <element name="startGameReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -137,6 +106,50 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="getGiocatori">
+    <complexType>
+     <sequence>
+      <element name="idGame" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGiocatoriResponse">
+    <complexType>
+     <sequence>
+      <element name="getGiocatoriReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addGiocatore">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+      <element name="nome" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addGiocatoreResponse">
+    <complexType>
+     <sequence>
+      <element name="addGiocatoreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="daiCarte">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="daiCarteResponse">
+    <complexType>
+     <sequence>
+      <element name="daiCarteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault1" type="tns1:MediatoreException"/>
    <element name="getTrionfo">
     <complexType>
      <sequence>
@@ -148,6 +161,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getTrionfoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMazzoGiocatore">
+    <complexType>
+     <sequence>
+      <element name="idGame" type="xsd:string"/>
+      <element name="player" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMazzoGiocatoreResponse">
+    <complexType>
+     <sequence>
+      <element name="getMazzoGiocatoreReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -166,31 +194,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getRemainingTime">
+   <element name="updateGiocatori">
     <complexType>
      <sequence>
       <element name="idGame" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getRemainingTimeResponse">
+   <element name="updateGiocatoriResponse">
     <complexType>
      <sequence>
-      <element name="getRemainingTimeReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="startGame">
-    <complexType>
-     <sequence>
-      <element name="idGame" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="startGameResponse">
-    <complexType>
-     <sequence>
-      <element name="startGameReturn" type="xsd:boolean"/>
+      <element name="updateGiocatoriReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -227,9 +241,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getMazzoGiocatoreRequest">
+   <wsdl:message name="creaPartitaRequest">
 
-      <wsdl:part element="impl:getMazzoGiocatore" name="parameters">
+      <wsdl:part element="impl:creaPartita" name="parameters">
 
       </wsdl:part>
 
@@ -243,9 +257,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="creaPartitaRequest">
+   <wsdl:message name="getMazzoGiocatoreRequest">
 
-      <wsdl:part element="impl:creaPartita" name="parameters">
+      <wsdl:part element="impl:getMazzoGiocatore" name="parameters">
 
       </wsdl:part>
 
@@ -275,6 +289,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="updateGiocatoriResponse">
+
+      <wsdl:part element="impl:updateGiocatoriResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="daiCarteRequest">
 
       <wsdl:part element="impl:daiCarte" name="parameters">
@@ -294,6 +316,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="numeroGiocatoriResponse">
 
       <wsdl:part element="impl:numeroGiocatoriResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateGiocatoriRequest">
+
+      <wsdl:part element="impl:updateGiocatori" name="parameters">
 
       </wsdl:part>
 
@@ -323,17 +353,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="creaPartitaResponse">
+   <wsdl:message name="ciaoRequest">
 
-      <wsdl:part element="impl:creaPartitaResponse" name="parameters">
+      <wsdl:part element="impl:ciao" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="ciaoRequest">
+   <wsdl:message name="creaPartitaResponse">
 
-      <wsdl:part element="impl:ciao" name="parameters">
+      <wsdl:part element="impl:creaPartitaResponse" name="parameters">
 
       </wsdl:part>
 
@@ -387,6 +417,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="startGameResponse">
+
+      <wsdl:part element="impl:startGameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="numeroGiocatoriRequest">
 
       <wsdl:part element="impl:numeroGiocatori" name="parameters">
@@ -403,25 +441,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="startGameResponse">
-
-      <wsdl:part element="impl:startGameResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="ciaoResponse">
 
       <wsdl:part element="impl:ciaoResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getMazzoGiocatoreResponse">
-
-      <wsdl:part element="impl:getMazzoGiocatoreResponse" name="parameters">
 
       </wsdl:part>
 
@@ -435,37 +457,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getMazzoGiocatoreResponse">
+
+      <wsdl:part element="impl:getMazzoGiocatoreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="GameService">
 
-      <wsdl:operation name="addGiocatore">
+      <wsdl:operation name="ciao">
 
-         <wsdl:input message="impl:addGiocatoreRequest" name="addGiocatoreRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addGiocatoreResponse" name="addGiocatoreResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getMazzoGiocatore">
-
-         <wsdl:input message="impl:getMazzoGiocatoreRequest" name="getMazzoGiocatoreRequest">
+         <wsdl:input message="impl:ciaoRequest" name="ciaoRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getMazzoGiocatoreResponse" name="getMazzoGiocatoreResponse">
+         <wsdl:output message="impl:ciaoResponse" name="ciaoResponse">
 
        </wsdl:output>
-
-         <wsdl:fault message="impl:MediatoreException" name="MediatoreException">
-
-       </wsdl:fault>
 
       </wsdl:operation>
 
@@ -481,22 +491,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setMonte">
-
-         <wsdl:input message="impl:setMonteRequest" name="setMonteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setMonteResponse" name="setMonteResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
       <wsdl:operation name="esistePartita">
 
          <wsdl:input message="impl:esistePartitaRequest" name="esistePartitaRequest">
@@ -509,98 +503,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="daiCarte">
-
-         <wsdl:input message="impl:daiCarteRequest" name="daiCarteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:daiCarteResponse" name="daiCarteResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:MediatoreException" name="MediatoreException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="ciao">
-
-         <wsdl:input message="impl:ciaoRequest" name="ciaoRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:ciaoResponse" name="ciaoResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getGiocatori">
-
-         <wsdl:input message="impl:getGiocatoriRequest" name="getGiocatoriRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getGiocatoriResponse" name="getGiocatoriResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="numeroGiocatori">
-
-         <wsdl:input message="impl:numeroGiocatoriRequest" name="numeroGiocatoriRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:numeroGiocatoriResponse" name="numeroGiocatoriResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getTrionfo">
-
-         <wsdl:input message="impl:getTrionfoRequest" name="getTrionfoRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getTrionfoResponse" name="getTrionfoResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="gioca">
-
-         <wsdl:input message="impl:giocaRequest" name="giocaRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:giocaResponse" name="giocaResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getRemainingTime">
 
          <wsdl:input message="impl:getRemainingTimeRequest" name="getRemainingTimeRequest">
@@ -608,6 +510,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getRemainingTimeResponse" name="getRemainingTimeResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMonte">
+
+         <wsdl:input message="impl:setMonteRequest" name="setMonteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMonteResponse" name="setMonteResponse">
 
        </wsdl:output>
 
@@ -633,57 +551,155 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="numeroGiocatori">
+
+         <wsdl:input message="impl:numeroGiocatoriRequest" name="numeroGiocatoriRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:numeroGiocatoriResponse" name="numeroGiocatoriResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGiocatori">
+
+         <wsdl:input message="impl:getGiocatoriRequest" name="getGiocatoriRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getGiocatoriResponse" name="getGiocatoriResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addGiocatore">
+
+         <wsdl:input message="impl:addGiocatoreRequest" name="addGiocatoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addGiocatoreResponse" name="addGiocatoreResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="daiCarte">
+
+         <wsdl:input message="impl:daiCarteRequest" name="daiCarteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:daiCarteResponse" name="daiCarteResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:MediatoreException" name="MediatoreException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTrionfo">
+
+         <wsdl:input message="impl:getTrionfoRequest" name="getTrionfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTrionfoResponse" name="getTrionfoResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMazzoGiocatore">
+
+         <wsdl:input message="impl:getMazzoGiocatoreRequest" name="getMazzoGiocatoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMazzoGiocatoreResponse" name="getMazzoGiocatoreResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:MediatoreException" name="MediatoreException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="gioca">
+
+         <wsdl:input message="impl:giocaRequest" name="giocaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:giocaResponse" name="giocaResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateGiocatori">
+
+         <wsdl:input message="impl:updateGiocatoriRequest" name="updateGiocatoriRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateGiocatoriResponse" name="updateGiocatoriResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:NoGameFoundException" name="NoGameFoundException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="GameServiceSoapBinding" type="impl:GameService">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="addGiocatore">
+      <wsdl:operation name="ciao">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addGiocatoreRequest">
+         <wsdl:input name="ciaoRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addGiocatoreResponse">
+         <wsdl:output name="ciaoResponse">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
-
-         <wsdl:fault name="NoGameFoundException">
-
-            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getMazzoGiocatore">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getMazzoGiocatoreRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getMazzoGiocatoreResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="MediatoreException">
-
-            <wsdlsoap:fault name="MediatoreException" use="literal"/>
-
-         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -702,6 +718,48 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="esistePartita">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="esistePartitaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="esistePartitaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRemainingTime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRemainingTimeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRemainingTimeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
 
       </wsdl:operation>
 
@@ -729,77 +787,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="esistePartita">
+      <wsdl:operation name="startGame">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="esistePartitaRequest">
+         <wsdl:input name="startGameRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="esistePartitaResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="daiCarte">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="daiCarteRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="daiCarteResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="MediatoreException">
-
-            <wsdlsoap:fault name="MediatoreException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="ciao">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="ciaoRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="ciaoResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getGiocatori">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getGiocatoriRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getGiocatoriResponse">
+         <wsdl:output name="startGameResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -837,6 +835,78 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getGiocatori">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGiocatoriRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGiocatoriResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addGiocatore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addGiocatoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addGiocatoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="NoGameFoundException">
+
+            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="daiCarte">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="daiCarteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="daiCarteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="MediatoreException">
+
+            <wsdlsoap:fault name="MediatoreException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
       <wsdl:operation name="getTrionfo">
 
          <wsdlsoap:operation soapAction=""/>
@@ -856,6 +926,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:fault name="NoGameFoundException">
 
             <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMazzoGiocatore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMazzoGiocatoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMazzoGiocatoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="MediatoreException">
+
+            <wsdlsoap:fault name="MediatoreException" use="literal"/>
 
          </wsdl:fault>
 
@@ -885,41 +979,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getRemainingTime">
+      <wsdl:operation name="updateGiocatori">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getRemainingTimeRequest">
+         <wsdl:input name="updateGiocatoriRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getRemainingTimeResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-         <wsdl:fault name="NoGameFoundException">
-
-            <wsdlsoap:fault name="NoGameFoundException" use="literal"/>
-
-         </wsdl:fault>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="startGame">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="startGameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="startGameResponse">
+         <wsdl:output name="updateGiocatoriResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -131,8 +131,12 @@ public class Partita implements Game {
 	}
 	
 	public int nextPlayer() {
-		if(currentPlaying == giocatori.size() - 1)
+		if(currentPlaying == giocatori.size() - 1) {
 			setCurrentPlaying(0);
+			//Se ho finito il giro a chiamare cambio stato
+			if(flusso.getStatoCorrente().equals(FlussoPartita.ManoChiamante))
+				flusso.goNextStep();
+		}
 		else
 			setCurrentPlaying(getCurrentPlaying() + 1);
 		return getCurrentPlaying();
@@ -155,18 +159,16 @@ public class Partita implements Game {
 			mossa = timeout();
 		switch(mossa) {
 		case Partita.PASSA:
-			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
 			nextPlayer();
 			break;
 		case Partita.CHIAMA:
-			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
 			break;
 		case Partita.SOLA:
-			getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
 			break;
 		default:
 			break;
 		}
+		getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
 		return getCurrentPlaying();
 	}
 

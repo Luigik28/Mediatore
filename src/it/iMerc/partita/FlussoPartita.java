@@ -10,8 +10,11 @@ public class FlussoPartita {
 	public static String STATO_CONFIGURAZIONE_END = "endConf";
 	public static String STATO_MANO_CHIAMANTE = "startChiamata";
 	public static String STATO_INIZIO_MANO = "startMano";
+	public static String STATO_FINALE = "sF";
 
-	public static Stato InizioMano = new Stato(STATO_INIZIO_MANO,null);
+
+	public static Stato StatoFinale = new Stato(STATO_FINALE,null);
+	public static Stato InizioMano = new Stato(STATO_INIZIO_MANO,StatoFinale);
 	public static Stato ManoChiamante = new Stato(STATO_MANO_CHIAMANTE,InizioMano);
 	public static Stato ConfigurazioneEnd = new Stato(STATO_CONFIGURAZIONE_END,ManoChiamante);
 	public static Stato Configurazione = new Stato(STATO_CONFIGURAZIONE,ConfigurazioneEnd);
