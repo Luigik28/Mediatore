@@ -68,6 +68,13 @@ public class Carta implements Comparable<Carta>, Serializable {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Carta))
+			return super.equals(obj);
+		return ((Carta) obj).getId() == this.getId();
+	}
+	
+	@Override
 	public String toString() {
 		return getNumero() + " di " + getSeme();
 	}

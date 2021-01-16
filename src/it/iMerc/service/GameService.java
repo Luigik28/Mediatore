@@ -88,7 +88,7 @@ public class GameService {
 	
 	public int getRemainingTime(String idGame) throws NoGameFoundException {
 		Partita p = (Partita) GamePool.getGame(idGame);
-		Giocatore g = p.getGiocatori().get(p.getCurrentPlaying());
+		Giocatore g = p.getGiocatoreAttivo();
 		return g.getTempoRimasto();
 	}
 	

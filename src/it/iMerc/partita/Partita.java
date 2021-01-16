@@ -102,6 +102,10 @@ public class Partita implements Game {
 	public Giocatore getHost() {
 		return host;
 	}
+	
+	public Giocatore getGiocatoreAttivo() {
+		return getGiocatori().get(getCurrentPlaying());
+	}
 
 	@Override
 	public void startGame() throws MediatoreException {
@@ -127,7 +131,7 @@ public class Partita implements Game {
 	public void setCurrentPlaying(int currentPlaying) {
 		this.currentPlaying = currentPlaying;
 		setActivePlayer(getCurrentPlaying());
-		giocatori.get(getCurrentPlaying()).setT0(System.currentTimeMillis());
+		getGiocatoreAttivo().setT0(System.currentTimeMillis());
 	}
 	
 	public int nextPlayer() {
@@ -150,7 +154,7 @@ public class Partita implements Game {
 	}
 
 	public void updateGiocatori() {
-		if(giocatori.get(getCurrentPlaying()).getTempoRimasto() < 0)
+		if(getGiocatoreAttivo().getTempoRimasto() < 0)
 			gioca(Partita.TIMEOUT);
 	}
 	
@@ -159,16 +163,18 @@ public class Partita implements Game {
 			mossa = timeout();
 		switch(mossa) {
 		case Partita.PASSA:
-			nextPlayer();
 			break;
 		case Partita.CHIAMA:
+			getGiocatoreAttivo().setChiamante(true);
 			break;
 		case Partita.SOLA:
 			break;
 		default:
+			getGiocatoreAttivo().giocaCarta(new Carta(mossa));
 			break;
 		}
-		getGiocatori().get(getCurrentPlaying()).setUltimaMossa(mossa);
+		getGiocatoreAttivo().setUltimaMossa(mossa);
+		nextPlayer();
 		return getCurrentPlaying();
 	}
 
